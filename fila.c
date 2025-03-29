@@ -37,7 +37,7 @@ FILA* inicializarFila(){
     return f;
 }
 
-void inserirFila(FILA *f,int num){
+void enfileirar(FILA *f,int num){
     if(f==NULL){
         printf("\nNo de fila inválido\n");
         return;
@@ -56,6 +56,21 @@ void inserirFila(FILA *f,int num){
     f->tam++;
 
     return;
+}
+
+int desenfileirar(FILA* f){
+    int num;
+    NO* noAux = f->primeiro;
+    if(noAux == NULL){
+        printf("Fila está vazia\n");
+        return -99999;
+    }
+    num = f->primeiro->num;
+    f->primeiro = f->primeiro->prox;
+    f->primeiro->ant = NULL;
+    free(noAux);
+
+    return num;
 }
 
 void percorrerListaInicio(FILA *f){
@@ -273,13 +288,12 @@ void inserirFilaIndex(FILA* f, int num, int Index){
     f->tam++;
 
     return;
-
 }
 
 int main (){
     FILA *f = inicializarFila();
     for(int i = 10; i > 0; i--){
-        inserirFila(f,i);
+        enfileirar(f,i);
     }
 
     percorrerListaInicio(f);
