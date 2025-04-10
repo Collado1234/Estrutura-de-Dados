@@ -187,12 +187,22 @@ No* _buscarNo(Matriz* m, int linha, int coluna){
     return NULL;
 }
 
-void consultar(Matriz *m, int linha, int coluna){
+void consulta(Matriz *m, int linha, int coluna){
     No* no_busca = _buscarNo(m,linha,coluna);
     if(no_busca == NULL){
         printf("Não existe elemento nessa posicao\n");
     }else{
         printf("[%d][%d]: %d\n",no_busca->linha, no_busca->coluna,no_busca->elemento);
+    }
+}
+//upseart
+void alterar(Matriz* m, int linha, int coluna, int novo_valor){
+    No* no_busca = _buscarNo(m,linha,coluna);
+    if(no_busca == NULL){
+        inserirElemento(m,novo_valor,linha,coluna);
+    }else{
+        no_busca->elemento = novo_valor;
+        printf("Alterado [%d][%d]: %d \n",no_busca->linha,no_busca->coluna,no_busca->elemento);
     }
 }
 
@@ -211,7 +221,14 @@ int main(){
 
     printarMatriz(m);
 
-    printf("%d",qtdElementosMatriz(m));
+    printf("%d\n",qtdElementosMatriz(m));
+
+    consulta(m,0,0);
+    consulta(m,1,0);
+    alterar(m,0,0,8);
+    alterar(m,0,1,7);
+
+    printarMatriz(m);
 
 return 0;
 }
