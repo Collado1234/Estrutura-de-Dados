@@ -187,6 +187,15 @@ No* _buscarNo(Matriz* m, int linha, int coluna){
     return NULL;
 }
 
+void consultar(Matriz *m, int linha, int coluna){
+    No* no_busca = _buscarNo(m,linha,coluna);
+    if(no_busca == NULL){
+        printf("Não existe elemento nessa posicao\n");
+    }else{
+        printf("[%d][%d]: %d\n",no_busca->linha, no_busca->coluna,no_busca->elemento);
+    }
+}
+
 int main(){
     Matriz* m = inicializarMatriz();
     inserirElemento(m, 5, 0, 0);
