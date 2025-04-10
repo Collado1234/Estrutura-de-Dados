@@ -176,6 +176,16 @@ int qtdElementosMatriz(Matriz* m){
     }
 }
 
+No* _buscarNo(Matriz* m, int linha, int coluna){
+    No* noAux = m->lin[linha];
+    while(noAux != NULL && noAux->coluna < coluna){
+        noAux = noAux->direita;
+    }
+    if(noAux != NULL && noAux->coluna == coluna){
+        return noAux;
+    }
+    return NULL;
+}
 
 int main(){
     Matriz* m = inicializarMatriz();
