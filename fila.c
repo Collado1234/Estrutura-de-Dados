@@ -54,6 +54,7 @@ void enfileirar(FILA *f,int num){
         printf("\nNo de fila inválido\n");
         return;
     }
+
     NO *novo_no = inicializarNO(num); //inicializa o nó
     if(f->primeiro==NULL){   // Se a fila estiver vazia o primeiro e ultimo são iguais
         f->primeiro = novo_no;
@@ -106,7 +107,7 @@ void percorrerListaFinal(FILA *f){
         printf("\nNo de fila inválido\n");
         return;
     }
-    NO* noAux = f->ultimo;
+    no* noAux = f->ultimo;
     while(noAux != NULL){
         printf("%d ", noAux->num);
         noAux = noAux->ant;
@@ -123,7 +124,7 @@ void removerElemento(FILA *f, int chave){
 
     // Remover o primeiro nó
     if (f->primeiro != NULL && f->primeiro->num == chave) {
-        NO* temp = f->primeiro;
+        no* temp = f->primeiro;
         f->primeiro = f->primeiro->prox;
         if (f->primeiro != NULL) {
             f->primeiro->ant = NULL;
@@ -138,7 +139,7 @@ void removerElemento(FILA *f, int chave){
 
     // Remover o último nó
     if (f->ultimo != NULL && f->ultimo->num == chave) {
-        NO* temp = f->ultimo;
+        no* temp = f->ultimo;
         f->ultimo = f->ultimo->ant;
         if (f->ultimo != NULL) {
             f->ultimo->prox = NULL;
@@ -152,7 +153,7 @@ void removerElemento(FILA *f, int chave){
     }
 
     // Remover do meio
-    NO* noAux = f->primeiro;
+    no* noAux = f->primeiro;
     while(noAux != NULL){
         if(noAux->num == chave){
             noAux->ant->prox = noAux->prox;
@@ -177,7 +178,7 @@ NO* buscarNo(FILA *f, int chave){
         return NULL;
     }
 
-    NO* noAux = f->primeiro;
+    no* noAux = f->primeiro;
     while(noAux != NULL){
         if(noAux->num == chave){
             printf("No encontrado\n");
@@ -190,9 +191,9 @@ NO* buscarNo(FILA *f, int chave){
 }
 /*Destrói todos os nós das filas*/
 void liberarFila(FILA *f) {
-    NO* atual = f->primeiro;
+    no* atual = f->primeiro;
     while (atual != NULL) {
-        NO* prox = atual->prox;
+        no* prox = atual->prox;
         free(atual);
         atual = prox;
     }
@@ -204,7 +205,7 @@ void insercaoOrdenada(FILA *f, int novoNum) {
         printf("\nNo de fila inválido\n");
         return;
     }
-    NO* novoNO = inicializarNO(novoNum);
+    no* novoNO = inicializarNO(novoNum);
     
     if (f->primeiro == NULL) {  // Fila vazia
         f->primeiro = novoNO;
@@ -255,7 +256,7 @@ void inserirFilaIndex(FILA* f, int num, int Index){
         printf("Index invalido, tente um index na faixa (%d - %d)", 0,f->tam-1);
         return;
     }
-    NO* novoNo = inicializarNO(num);
+    no* novoNo = inicializarNO(num);
     if(novoNo == NULL){
         printf("Erro alocacao\n");
         return;  // Caso a alocação falhe
@@ -279,7 +280,7 @@ void inserirFilaIndex(FILA* f, int num, int Index){
     }
 
     //identificando qual o caminho mais rápido e posicionando o noAux no ponto correto
-    NO *noAux = NULL;
+    no *noAux = NULL;
     if(Index < f->tam/2){
         noAux = f->primeiro;
         for(int i=Index;i>0; i--){
